@@ -1,116 +1,91 @@
-function calculate(operator){
-  const num1 = parseFloat(document.getElementById('num1').value);
-  const num2 = parseFloat(document.getElementById('num2').value);
-  let result;
+// Calculator
+function calculate(operation) {
+  const num1 = parseFloat(document.getElementById("num1").value);
+  const num2 = parseFloat(document.getElementById("num2").value);
+  let result = "";
 
-  if (isNan(num1) || isNan(num2)) {
-    result="Please enter valid numbers";
-  }else{
-    switch(operator){
+  if (isNaN(num1) || isNaN(num2)) {
+    result = "Please enter valid numbers!";
+  } else {
+    switch (operation) {
       case 'add':
         result = num1 + num2;
         break;
-      case 'subtract':
+      case 'sub':
         result = num1 - num2;
         break;
-      case 'multiply':
+      case 'mul':
         result = num1 * num2;
         break;
-      case 'divide':
-        result = num2 !==0 ? (num1 / num2).toFixed(2) : "Cannot divide by zero";
+      case 'div':
+        result = num2 !== 0 ? (num1 / num2).toFixed(2) : "Cannot divide by zero!";
         break;
-      default:
-        result = "Invalid operation";
     }
   }
-  document.getElementById('calcResult').innerText = `Result: ${result}`;
+
+  document.getElementById("calcResult").innerText = result;
 }
 
-function addTodo(){
-  const input = document.getElementById('todoInput');
-  const taskText = input.value.trim();
+// Form validation
+document.getElementById("myForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const name = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("formMessage");
 
-  if (taskText === ""){
-    alert("Please enter a task");
-    return;
+  if (name === "" || email === "") {
+    message.style.color = "red";
+    message.innerText = "All fields are required!";
+  } else {
+    message.style.color = "green";
+    message.innerText = `Thanks ${name}, we'll contact you at ${email}`;
+    this.reset();
   }
+});
 
-  const li = document.createElement('li');
-  li.textContent = taskText;
-
-  const delBtn = document.createElement('button');
-  delBtn.textContent = "Delete";
-  delBtn.style.marginLeft = "10px";
-  delBtn.onclick = () => li.remove()
-
-  li.appendChild(delBtn);
-  document.getElementById('todoList').appendChild(li);
-
-  input.value = "";
-}
-
-
-function validateForm() {
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  const error = document.getElementById('formError').value;
-
-  error.textContent = "";
-
-  if (name === "" ){
-    error.textContent = "Name is required";
-    return false;
-  }
-
-  if (!email.include("@") || !email.include(".")) {
-    error.textContent = "Invalid email address";
-    return false;
-  }
-
-  if (password.length < 6) {
-    error.textContent = "Password must be at least 6 characters long";
-    return false;
-  }
-
-  alert("Form submitted successfully!");
-  return true;
-}
-
-
+// Counter
 let count = 0;
-function updateCounter() {
-  document.getElementById('count').innerText = count;
-}
+const countDisplay = document.getElementById("count");
 
-function increment(){
+function increment() {
   count++;
-  updateCounter();
+  countDisplay.innerText = count;
 }
 
-function decrement(){
+function decrement() {
   count--;
-  updateCounter();
+  countDisplay.innerText = count;
 }
 
-function reset(){
+function reset() {
   count = 0;
-  updateCounter();
+  countDisplay.innerText = count;
 }
 
-const quotes =[
-  "MotherLand or Death.",
-  "Your time is limited, so don't waste it living someone else's life.",
-  "Life is what happens when you're busy making other plans.",
-  "Get busy living or get busy dying.",
-  "Whether you think you can or you think you can't, you're right.",
-  "You miss 100% of the shots you don't take.",
-  "Life is 10% what happens to me and 90% of how I react to it.",
-  "Life is like riding a bicycle. To keep your balance, you must keep moving.",
-]
+// Quote Generator
+const quotes = [
+  "The best way to get started is to quit talking and begin doing.",
+  "Dream big and dare to fail.",
+  "Success is not in what you have, but who you are.",
+  "The harder you work for something, the greater you’ll feel when you achieve it."
+];
 
-function generateQuote(){
+function generateQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
-  const quote = quotes[randomIndex];
-  document.getElementById('quote').innerContent = quote;
+  document.getElementById("quoteText").innerText = quotes[randomIndex];
+}
+
+// Todo List
+function addTodo() {
+  const input = document.getElementById("todoInput");
+  const task = input.value.trim();
+  const list = document.getElementById("todoList");
+
+  if (task !== "") {
+    const li = document.createElement("li");
+    li.innerText = task;
+    li.addEventListener("click", () => li.remove()); // click to remove task
+    list.appendChild(li);
+    input.value = "";
+  }
 }
