@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mini-tool-app</title>
+</head>
+<body>
+  <h1>Multi-Tool JavaScript Apps</h1>
+
+  <section id="calculator">
+    <h2>Calculator</h2>
+    <input type="text" id="num1" placeholder="Enter 1st calculation">
+    <input type="text" id="num2" placeholder="Enter 2nd calculation">
+    <br></br>
+    <button onclick="calculate('add')">Add</button>
+    <button onclick="calculate('subtract')">Subtract</button>
+    <button onclick="calculate('multiply')">Multiply</button>
+    <button onclick="calculate('divide')">Divide</button>
+    <p id="calcResult">Result: </p>
+  </section>
+
+  
+  <section id="todo"
+    <h2>Todo List</h2>
+    <input type="text" id="todoInput" placeholder="Enter a new task">
+    <button onclick="addTodo()">Add Task</button>
+    <ul id="todoList"></ul>
+  </section>
+
+  
+  <section id="validation">
+    <h2>Form Validation</h2>
+    <form id="myForm" onsubmit="return validateForm()"">
+    <label>Name:</label>
+      <input type="text" id="name"/><br></br> 
+    <label>Email:</label>
+      <input type="email" id="email"><br></br>
+    <label>Password:</label>
+      <input type="password" id="password"><br></br>
+    <button type="submit">Submit</button>
+    </form>
+    <p id="formError" style="color: red;"></p>
+  </section>
+
+  
+  <section id="counter">
+    <h2>Counter</h2>
+    <div>
+      <h3 id="count">0</h3>
+      <button onclick="increment()">Increment</button>
+      <button onclick="decrement()">Decrement</button>
+      <button onclick="reset()">Reset</button>
+    </div>
+  </section>
+
+  
+  <section id="quote">
+    <h2>Quote Generator</h2>
+    <blockquote id="quote-Text">Click Me To Get A Quote!</blockquote>
+    <button onclick="generateQuote()">Get Quote</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
